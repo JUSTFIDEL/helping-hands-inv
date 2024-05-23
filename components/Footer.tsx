@@ -29,7 +29,7 @@ const Footer = ({ user, type = 'desktop' }: FooterProps) => {
         </p>
       </div>
       <div className='footer_image' onClick={handleLogOut}>
-        <Image src='icons/logout.svg' width={35} height={35} alt='logout' />
+        <Image src='icons/logout.svg' width={25} height={25} alt='logout' />
       </div>
     </footer>
   )
