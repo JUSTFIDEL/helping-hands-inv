@@ -157,36 +157,36 @@ export const logoutAccount = async () => {
 //   }
 // }
 
-export const createBankAccount = async ({
-  userId,
-  bankId,
-  accountId,
-  accessToken,
-  fundingSourceUrl,
-  shareableId,
-}: createBankAccountProps) => {
-  try {
-    const { database } = await createAdminClient()
+// export const createBankAccount = async ({
+//   userId,
+//   bankId,
+//   accountId,
+//   accessToken,
+//   fundingSourceUrl,
+//   shareableId,
+// }: createBankAccountProps) => {
+//   try {
+//     const { database } = await createAdminClient()
 
-    const bankAccount = await database.createDocument(
-      DATABASE_ID!,
-      BANK_COLLECTION_ID!,
-      ID.unique(),
-      {
-        userId,
-        bankId,
-        accountId,
-        accessToken,
-        fundingSourceUrl,
-        shareableId,
-      }
-    )
+//     const bankAccount = await database.createDocument(
+//       DATABASE_ID!,
+//       BANK_COLLECTION_ID!,
+//       ID.unique(),
+//       {
+//         userId,
+//         bankId,
+//         accountId,
+//         accessToken,
+//         fundingSourceUrl,
+//         shareableId,
+//       }
+//     )
 
-    return parseStringify(bankAccount)
-  } catch (error) {
-    console.log(error)
-  }
-}
+//     return parseStringify(bankAccount)
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
 
 // export const exchangePublicToken = async ({
 //   publicToken,
