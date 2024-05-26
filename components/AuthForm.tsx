@@ -48,7 +48,15 @@ const AuthForm = ({ type }: { type: string }) => {
       // Sign up with Appwrite
 
       if (type === 'sign-up') {
-        const newUser = await signUp(data)
+        const userData = {
+          firstName: data.firstName!,
+          lastName: data.lastName!,
+          username: data.username!,
+          email: data.email,
+          password: data.password,
+        }
+
+        const newUser = await signUp(userData)
         setUser(newUser)
       }
 
@@ -59,7 +67,6 @@ const AuthForm = ({ type }: { type: string }) => {
         })
 
         if (response) router.push('/')
-        // router.push('/')
       }
     } catch (error) {
       console.log(error)

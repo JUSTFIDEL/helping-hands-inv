@@ -8,8 +8,8 @@ declare type SearchParamProps = {
 // ========================================
 
 declare type SignUpParams = {
-  firstName?: string
-  lastName?: string
+  firstName: string
+  lastName: string
   // address1: string
   // city: string
   // state: string
@@ -18,7 +18,7 @@ declare type SignUpParams = {
   // ssn: string
   email: string
   password: string
-  username?: string
+  username: string
 }
 
 declare type LoginUser = {
@@ -32,10 +32,10 @@ declare type User = {
   userId: string
   name: string
   username: string
-  dwollaCustomerUrl: string
-  dwollaCustomerId: string
   firstName: string
   lastName: string
+  // dwollaCustomerUrl: string
+  // dwollaCustomerId: string
   // address1: string
   // city: string
   // state: string
@@ -141,6 +141,13 @@ declare type NewDwollaCustomerParams = {
   // ssn: string
 }
 
+declare interface InvestmentCardProps {
+  plan: 'Starter' | 'Gold' | 'Silver' | 'Platinium'
+  amount: number
+  duration: string
+  naration: string
+}
+
 declare interface CreditCardProps {
   account: Account
   userName: string
@@ -221,7 +228,7 @@ declare interface FooterProps {
 declare interface RightSidebarProps {
   user: User
   transactions: Transaction[]
-  banks: Bank[] & Account[]
+  // banks: Bank[] & Account[]
 }
 
 declare interface SidebarProps {

@@ -1,9 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import BankCard from './BankCard'
+// import BankCard from './BankCard'
 
-const RightSIdebar = ({ user, transactions, banks }: RightSidebarProps) => {
+// const RightSIdebar = ({ user, transactions, bank }: RightSidebarProps) => {
+const RightSIdebar = ({ user, transactions }: RightSidebarProps) => {
   return (
     <aside className='right-sidebar'>
       <section className='flex flex-col pb-8'>
@@ -11,12 +12,14 @@ const RightSIdebar = ({ user, transactions, banks }: RightSidebarProps) => {
         <div className='profile'>
           <div className='profile-img'>
             <span className='text-5xl font-bold text-blue-500'>
-              {user.name[0]}
+              {user?.firstName[0]}
             </span>
           </div>
 
           <div className='profile-details'>
-            <h1 className='profile-name'>{user.name}</h1>
+            <h1 className='profile-name'>
+              {user?.firstName} {user?.lastName}
+            </h1>
             <p className='profile-email'>{user.email}</p>
           </div>
         </div>
