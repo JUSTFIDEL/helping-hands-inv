@@ -17,7 +17,7 @@ const Portfolio = () => {
           naration='30% return on investment'
         />
 
-        <MyInvestment
+        {/* <MyInvestment
           amount={10000}
           plan='Gold'
           duration='1 Month'
@@ -36,7 +36,7 @@ const Portfolio = () => {
           plan='Platinium'
           duration='1 Month'
           naration='45% return on investment'
-        />
+        /> */}
       </div>
     </div>
   )
