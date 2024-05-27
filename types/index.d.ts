@@ -142,10 +142,10 @@ declare type NewDwollaCustomerParams = {
 }
 
 declare interface InvestmentCardProps {
-  plan: 'Starter' | 'Gold' | 'Silver' | 'Platinium'
-  amount: number
-  duration: string
-  naration: string
+  plan?: 'Starter' | 'Gold' | 'Silver' | 'Platinium'
+  amount?: number
+  duration?: string
+  naration?: string
 }
 
 declare interface CreditCardProps {
