@@ -9,7 +9,7 @@ const MyInvestment = ({
   naration,
 }: InvestmentCardProps) => {
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col my-2 mx-auto'>
       <Link href='/' className='bank-card'>
         <div className='bank-card_content'>
           <div>
