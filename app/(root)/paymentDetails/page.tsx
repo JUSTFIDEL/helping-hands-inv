@@ -1,6 +1,8 @@
 import HeaderBox from '@/components/HeaderBox'
+import { Button } from '@/components/ui/button'
 import { getLoggedInUser } from '@/lib/actions/user.actions'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const page = async () => {
@@ -18,9 +20,9 @@ const page = async () => {
           />
         </header>
 
-        <div className='flex flex-col justify-between h-80%'>
-          <div className='md:flex flex-wrap gap-8 p-6'>
-            <div className='mb-8'>
+        <div className='flex flex-col justify-between'>
+          <div className='md:flex flex-wrap gap-6 p-4'>
+            <div className='m-4'>
               <h2>
                 <span className='font-bold'>Bank Name:</span> First Bank
               </h2>
@@ -32,7 +34,7 @@ const page = async () => {
               </p>
             </div>
 
-            <div className='mb-8'>
+            <div className='m-4'>
               <h2>
                 <span className='font-bold'>Bank Name:</span> GT Bank
               </h2>
@@ -44,7 +46,7 @@ const page = async () => {
               </p>
             </div>
 
-            <div className='mb-8'>
+            <div className='m-4'>
               <h2>
                 <span className='font-bold'>Bank Name:</span> Access Bank
               </h2>
@@ -56,7 +58,7 @@ const page = async () => {
               </p>
             </div>
 
-            <div className='mb-8'>
+            <div className='m-4'>
               <h2>
                 <span className='font-bold'>Bank Name:</span> Opay
               </h2>
@@ -68,12 +70,29 @@ const page = async () => {
               </p>
             </div>
           </div>
-          <div className='mt-8'>
+          <div>
+            <Link href='https://t.me/+XmGq0SyfcudhMTc0' target='_blank'>
+              <h1 className='mb-2 '>
+                Once Paymeny is made, kindly click the button below to send
+                prove of payment
+              </h1>
+              <Button className='form-btn flex gap-2'>
+                {/* <Image
+                  src='/icon/telegram1.jpg'
+                  alt='telegram'
+                  width={20}
+                  height={20}
+                /> */}
+                <p>Send proof of payment</p>
+              </Button>
+            </Link>
+          </div>
+          <div className='mt-4'>
             <Image
               src='/icons/banks0.jpg'
-              alt='banl logo'
-              width={600}
-              height={250}
+              alt='banks logo'
+              width={800}
+              height={300}
             />
           </div>
         </div>

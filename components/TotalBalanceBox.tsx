@@ -107,7 +107,7 @@ const TotalBalanceBox = ({
           <Link href='/' className='bank-card'>
             <div className='bank-card_content bg-gray-700 bg-bank-gradient'>
               <div>
-                <h1 className='text-16 font-semibold text-white'>N5000</h1>
+                <h1 className='text-16 font-semibold text-white'>N5,000</h1>
                 <p className='font-ibm-plex-serif font-black text-white'>
                   Starter
                 </p>
@@ -118,7 +118,7 @@ const TotalBalanceBox = ({
                   <h1 className='text-12 font-semibold text-white'>
                     Starter League
                   </h1>
-                  <h2 className='text-12 font-semibold text-white'>30 Days</h2>
+                  <h2 className='text-12 font-semibold text-white'>15 Days</h2>
                 </div>
                 <p className='text-14 font-semibold tracking-[1.1px] text-white'>
                   <span className='text-16'>30% return on investment</span>
@@ -157,7 +157,7 @@ const TotalBalanceBox = ({
           <Link href='/' className='bank-card'>
             <div className='bank-card_content bg-gray-700'>
               <div>
-                <h1 className='text-16 font-semibold text-white'>N10000</h1>
+                <h1 className='text-16 font-semibold text-white'>N10,000</h1>
                 <p className='font-ibm-plex-serif font-black text-white'>
                   Silver
                 </p>
@@ -168,7 +168,7 @@ const TotalBalanceBox = ({
                   <h1 className='text-12 font-semibold text-white'>
                     Silver League
                   </h1>
-                  <h2 className='text-12 font-semibold text-white'>30 Days</h2>
+                  <h2 className='text-12 font-semibold text-white'>15 Days</h2>
                 </div>
                 <p className='text-14 font-semibold tracking-[1.1px] text-white'>
                   <span className='text-16'>30% return on investment</span>
@@ -207,7 +207,7 @@ const TotalBalanceBox = ({
           <Link href='/' className='bank-card'>
             <div className='bank-card_content bg-yellow-700'>
               <div>
-                <h1 className='text-16 font-semibold text-white'>N20000</h1>
+                <h1 className='text-16 font-semibold text-white'>N20,000</h1>
                 <p className='font-ibm-plex-serif font-black text-white'>
                   Gold
                 </p>
@@ -218,7 +218,7 @@ const TotalBalanceBox = ({
                   <h1 className='text-12 font-semibold text-white'>
                     Gold League
                   </h1>
-                  <h2 className='text-12 font-semibold text-white'>30 Days</h2>
+                  <h2 className='text-12 font-semibold text-white'>15 Days</h2>
                 </div>
                 <p className='text-14 font-semibold tracking-[1.1px] text-white'>
                   <span className='text-16'>30% return on investment</span>
@@ -257,7 +257,7 @@ const TotalBalanceBox = ({
           <Link href='/' className='bank-card'>
             <div className='bank-card_content bg-purple-700'>
               <div>
-                <h1 className='text-16 font-semibold text-white'>N50000</h1>
+                <h1 className='text-16 font-semibold text-white'>N50,000</h1>
                 <p className='font-ibm-plex-serif font-black text-white'>
                   Platinium
                 </p>
@@ -268,7 +268,7 @@ const TotalBalanceBox = ({
                   <h1 className='text-12 font-semibold text-white'>
                     Platinium League
                   </h1>
-                  <h2 className='text-12 font-semibold text-white'>30 Days</h2>
+                  <h2 className='text-12 font-semibold text-white'>15 Days</h2>
                 </div>
                 <p className='text-14 font-semibold tracking-[1.1px] text-white'>
                   <span className='text-16'>40% return on investment</span>
@@ -307,7 +307,7 @@ const TotalBalanceBox = ({
           <Link href='/' className='bank-card'>
             <div className='bank-card_content bg-green-700'>
               <div>
-                <h1 className='text-16 font-semibold text-white'>N100000</h1>
+                <h1 className='text-16 font-semibold text-white'>N200,000</h1>
                 <p className='font-ibm-plex-serif font-black text-white'>
                   Diamond
                 </p>
@@ -357,7 +357,7 @@ const TotalBalanceBox = ({
           <Link href='/' className='bank-card'>
             <div className='bank-card_content bg-fuchsia-700'>
               <div>
-                <h1 className='text-16 font-semibold text-white'>N500000</h1>
+                <h1 className='text-16 font-semibold text-white'>N500,000</h1>
                 <p className='font-ibm-plex-serif font-black text-white'>
                   Master
                 </p>
