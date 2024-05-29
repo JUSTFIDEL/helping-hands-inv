@@ -85,8 +85,24 @@ const AuthForm = ({ type }: { type: string }) => {
           </h1>
         </Link>
 
-        <div className='flex flex-col gap-1 md:gap-3'>
-          <h1 className='text-24 lg:text-36 font-semibold text-gray-900'>
+        <div>
+          {user && (
+            // <div className='sm:flex flex-1 flex-col text-center sm:text-left absolute top-20 pl-10 z-10'>
+            <div className='mb-4'>
+              <h1 className='font-bold tracking-tight text-4xl md:text-5xl md:max-w-[50vw] text-amber-500'>
+                Your best market to invest and make{' '}
+                <span className='text-blue-600'>MONEY</span> while asleep.
+              </h1>
+              <p className='mt-6 text-base text-muted-foreground md:max-w-[45vw]'>
+                Welcome to Helping-Hands Investment. Where every member is
+                verified and ready to help each other by combining our resources
+                to create a larger capital for investment and a larger interest
+                for.
+              </p>
+            </div>
+          )}
+
+          <h1 className='text-24 font-semibold text-green-700'>
             {user
               ? 'Account created successfully!'
               : type === 'sign-in'
@@ -94,7 +110,7 @@ const AuthForm = ({ type }: { type: string }) => {
               : 'Sign Up'}
             <p className='text-16 font-normal text-gray-600'>
               {user ? (
-                <Link href='/sign-in' className=' flex gap-4 mt-4'>
+                <Link href='/sign-in' className=' flex gap-4 mt-2'>
                   <Button className='form-btn'>Click here to Sign in.</Button>
                 </Link>
               ) : (

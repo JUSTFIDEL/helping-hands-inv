@@ -22,12 +22,12 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
 
           <TotalBalanceBox
             accounts={[]}
-            totalBanks={1}
-            totalCurrentBalance={2000}
+            totalBanks={0}
+            totalCurrentBalance={0}
           />
         </header>
 
-        <Portfolio />
+        {/* <Portfolio /> */}
       </div>
 
       <RightSIdebar

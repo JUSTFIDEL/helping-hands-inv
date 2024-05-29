@@ -9,7 +9,7 @@ const Portfolio = () => {
         subtext='Choose an Investment that actually suits you'
       />
 
-      <div className='flex flex-col justify-items-center mx-auto justify-center gap-2 mt-4 p-2 flex-wrap basis-1/2 md:flex-row md:gap-2 '>
+      <div className='flex flex-col justify-items-center mx-auto gap-2 mt-4 flex-wrap basis-1/2 md:flex-row'>
         <MyInvestment />
 
         {/* <MyInvestment

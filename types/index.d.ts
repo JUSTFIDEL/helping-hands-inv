@@ -217,7 +217,7 @@ declare interface BankTabItemProps {
 declare interface TotalBalanceBoxProps {
   accounts: Account[]
   totalBanks: number
-  totalCurrentBalance: number
+  totalCurrentBalance?: number
 }
 
 declare interface FooterProps {
