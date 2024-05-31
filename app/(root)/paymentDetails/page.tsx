@@ -20,9 +20,9 @@ const page = async () => {
           />
         </header>
 
-        <div className='flex flex-col justify-between'>
-          <div className='md:flex flex-wrap gap-6 p-4'>
-            <div className='m-4'>
+        <div className='flex flex-col justify-between mt-0 pt-0'>
+          <div className='md:flex flex-wrap gap-6 p-2'>
+            <div className='mx-4 border border-slate-200 drop-shadow-md bg-gray-100 p-4 rounded-md my-4'>
               <h2>
                 <span className='font-bold'>Bank Name:</span> First Bank
               </h2>
@@ -34,7 +34,7 @@ const page = async () => {
               </p>
             </div>
 
-            <div className='m-4'>
+            <div className='mx-4 border border-zinc-700 drop-shadow-md bg-gray-50 p-4 rounded-md my-4'>
               <h2>
                 <span className='font-bold'>Bank Name:</span> GT Bank
               </h2>
@@ -46,7 +46,7 @@ const page = async () => {
               </p>
             </div>
 
-            <div className='m-4'>
+            <div className='mx-4 border border-slate-200 drop-shadow-md bg-gray-100 p-4 rounded-md my-4'>
               <h2>
                 <span className='font-bold'>Bank Name:</span> Access Bank
               </h2>
@@ -58,7 +58,7 @@ const page = async () => {
               </p>
             </div>
 
-            <div className='m-4'>
+            <div className='mx-4 border border-zinc-700 drop-shadow-md bg-gray-50 p-4 rounded-md my-4'>
               <h2>
                 <span className='font-bold'>Bank Name:</span> Opay
               </h2>
@@ -77,12 +77,13 @@ const page = async () => {
                 prove of payment
               </h1>
               <Button className='form-btn flex gap-2'>
-                {/* <Image
-                  src='/icon/telegram1.jpg'
+                <Image
+                  src='/icons/telegram.svg'
                   alt='telegram'
-                  width={20}
-                  height={20}
-                /> */}
+                  width={25}
+                  height={25}
+                  className='rounded-full'
+                />
                 <p>Send proof of payment</p>
               </Button>
             </Link>
