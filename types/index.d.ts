@@ -19,6 +19,8 @@ declare type SignUpParams = {
   email: string
   password: string
   username: string
+  bankName: string
+  accountNumber: string
 }
 
 declare type LoginUser = {
@@ -34,6 +36,8 @@ declare type User = {
   username: string
   firstName: string
   lastName: string
+  bankName: string
+  accountNumber: string
   // dwollaCustomerUrl: string
   // dwollaCustomerId: string
   // address1: string
@@ -50,6 +54,8 @@ declare type NewUserParams = {
   name: string
   password: string
   username: string
+  bankName: string
+  accountNumber: string
 }
 
 declare type Account = {
@@ -142,7 +148,7 @@ declare type NewDwollaCustomerParams = {
 }
 
 declare interface InvestmentCardProps {
-  plan?: 'Starter' | 'Gold' | 'Silver' | 'Platinium'
+  plan?: 'Starter' | 'Silver' | 'Gold' | 'Platinium' | 'Diamond' | 'Master'
   amount?: number
   duration?: string
   naration?: string
@@ -200,7 +206,7 @@ declare interface PlaidLinkProps {
 // };
 
 declare interface AuthFormProps {
-  type: 'sign-in' | 'sign-up'
+  type: 'sign-in' | 'sign-up' | 'account-info'
 }
 
 declare interface BankDropdownProps {

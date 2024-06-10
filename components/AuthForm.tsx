@@ -54,6 +54,8 @@ const AuthForm = ({ type }: { type: string }) => {
           username: data.username!,
           email: data.email,
           password: data.password,
+          bankName: data.bankName!,
+          accountNumber: data.accountNumber!,
         }
 
         const newUser = await signUp(userData)
@@ -148,6 +150,18 @@ const AuthForm = ({ type }: { type: string }) => {
                     label='Username'
                     placeholder='Enter your username'
                   />
+                  <CustomInput
+                    control={form.control}
+                    name='bankName'
+                    label='Bank Name'
+                    placeholder='Enter bank name'
+                  />
+                  <CustomInput
+                    control={form.control}
+                    name='accountNumber'
+                    label='Account Number'
+                    placeholder='Enter account number'
+                  />
                 </>
               )}
 
@@ -174,8 +188,10 @@ const AuthForm = ({ type }: { type: string }) => {
                     </>
                   ) : type === 'sign-in' ? (
                     'Sign In'
-                  ) : (
+                  ) : type === 'sign-up' ? (
                     'Sign Up'
+                  ) : (
+                    'Save'
                   )}
                 </Button>
               </div>
