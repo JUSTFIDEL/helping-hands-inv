@@ -1,10 +1,10 @@
 import HeaderBox from '@/components/HeaderBox'
-import MyInvestment from '@/components/MyInvestment'
-import Portfolio from '@/components/Portfolio'
 import RightSIdebar from '@/components/RightSIdebar'
 import TotalBalanceBox from '@/components/TotalBalanceBox'
 import { getLoggedInUser } from '@/lib/actions/user.actions'
 import React from 'react'
+// import MyInvestment from '@/components/MyInvestment'
+// import Portfolio from '@/components/Portfolio'
 
 const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   const loggedIn = await getLoggedInUser()

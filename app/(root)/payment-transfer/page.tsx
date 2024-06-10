@@ -20,8 +20,8 @@ const PaymentPage = async () => {
         </div>
       </section>
 
-      <div className='p-8 mt-5'>
-        <h1 className='text-gray-700 mb-2'>Recent Transactions</h1>
+      <div className='pl-8 mt-5'>
+        <h1 className='text-gray-700 font-bold text-2xl'>Transfer Funds</h1>
       </div>
     </>
   )

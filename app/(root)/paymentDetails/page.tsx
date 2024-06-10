@@ -88,7 +88,7 @@ const page = async () => {
               </Button>
             </Link>
           </div>
-          <div className='mt-4'>
+          <div className='mt-auto mx-auto'>
             <Image
               src='/icons/banks0.jpg'
               alt='banks logo'

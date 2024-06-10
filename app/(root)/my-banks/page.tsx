@@ -1,5 +1,6 @@
 import HeaderBox from '@/components/HeaderBox'
 import { getLoggedInUser } from '@/lib/actions/user.actions'
+import Image from 'next/image'
 
 const MyBanks = async () => {
   const loggedIn = await getLoggedInUser()
@@ -31,6 +32,15 @@ const MyBanks = async () => {
           <span className='font-bold'>Account Number:</span>{' '}
           {loggedIn?.accountNumber}
         </h1>
+      </div>
+
+      <div className='mt-auto mx-auto'>
+        <Image
+          src='/icons/banks0.jpg'
+          alt='banks logo'
+          width={800}
+          height={300}
+        />
       </div>
     </>
   )
