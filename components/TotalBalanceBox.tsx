@@ -14,7 +14,7 @@ const TotalBalanceBox = ({
   totalCurrentBalance = 0,
 }: TotalBalanceBoxProps) => {
   const [bal, setBal] = useState(0)
-  const [paid, setPaid] = useState(true)
+  const [paid, setPaid] = useState(false)
   const [due, setDue] = useState(false)
   const router = useRouter()
 
