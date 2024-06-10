@@ -62,19 +62,20 @@ const MyBanks = async () => {
   // }
 
   return (
-    <section className='home'>
-      <div className='home-content'>
-        <header className='home-header'>
-          <HeaderBox
-            type='greeting'
-            title='Welcome back,'
-            user={loggedIn?.firstName || 'Guest'}
-            subtext='Kindly add your Bank Details here.'
-          />
-        </header>
-      </div>
+    <>
+      <section className='home'>
+        <div className='home-content'>
+          <header className='home-header'>
+            <HeaderBox
+              type='greeting'
+              title='Hello,'
+              user={loggedIn?.firstName || 'Guest'}
+              subtext='Your Bank Details are below, please note that this cannot be changed except you contact the admin.'
+            />
+          </header>
+        </div>
 
-      {/* <Form {...form}>
+        {/* <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
           <div className='flex gap-4'>
             <div>
@@ -122,8 +123,16 @@ const MyBanks = async () => {
         </form>
       </Form> */}
 
-      {/* <AuthForm /> */}
-    </section>
+        {/* <AuthForm /> */}
+      </section>
+      <div>
+        <h1>
+          Name: {loggedIn?.firstName} {loggedIn?.lastName}
+        </h1>
+        <h1>Bank: {loggedIn?.bankName}</h1>
+        <h1>Account Number: {loggedIn?.accountNumber}</h1>
+      </div>
+    </>
   )
 }
 
