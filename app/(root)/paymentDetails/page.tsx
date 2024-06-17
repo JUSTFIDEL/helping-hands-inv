@@ -76,7 +76,7 @@ const page = async () => {
                 Once Paymeny is made, kindly click the button below to send
                 prove of payment
               </h1>
-              <Button className='form-btn flex gap-2'>
+              <Button className='form-btn flex gap-2 my-8'>
                 <Image
                   src='/icons/telegram.svg'
                   alt='telegram'

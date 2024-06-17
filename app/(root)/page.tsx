@@ -1,6 +1,7 @@
 import HeaderBox from '@/components/HeaderBox'
 import RightSIdebar from '@/components/RightSIdebar'
 import TotalBalanceBox from '@/components/TotalBalanceBox'
+import { getInvestment, getInvestments } from '@/lib/actions/bank.actions'
 import { getLoggedInUser } from '@/lib/actions/user.actions'
 import React from 'react'
 // import MyInvestment from '@/components/MyInvestment'
@@ -8,6 +9,19 @@ import React from 'react'
 
 const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   const loggedIn = await getLoggedInUser()
+  const investments = await getInvestments({ userId: loggedIn.$id })
+
+  // if(!investments) return;
+
+  const appwriteItemId = (id as string) || investments?.data[0]?.appwriteItemId
+
+  const investment = await getInvestment({ appwriteItemId })
+
+  console.log({
+    // investments?.data,
+    appwriteItemId,
+    investment,
+  })
 
   return (
     <section className='home'>
@@ -23,7 +37,7 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
           <TotalBalanceBox
             accounts={[]}
             totalBanks={0}
-            totalCurrentBalance={0}
+            totalCurrentBalance={investments?.invAmount}
           />
         </header>
 

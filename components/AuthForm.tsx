@@ -110,7 +110,7 @@ const AuthForm = ({ type }: { type: string }) => {
               : type === 'sign-in'
               ? 'Sign In'
               : 'Sign Up'}
-            <p className='text-16 font-normal text-gray-600'>
+            <p className='text-16 font-normal text-gray-600 my-8'>
               {user ? (
                 <Link href='/sign-in' className=' flex gap-4 mt-auto'>
                   <Button className='form-btn'>Click here to Sign in.</Button>

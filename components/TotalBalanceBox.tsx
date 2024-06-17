@@ -7,78 +7,122 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { Button } from './ui/button'
 import { useRouter } from 'next/navigation'
+import { getLoggedInUser, createPortfolio } from '@/lib/actions/user.actions'
+// import { parseInt, parseStringify } from '@/lib/utils'
 
 const TotalBalanceBox = ({
   accounts = [],
   totalBanks,
-  totalCurrentBalance = 0,
+  totalCurrentBalance,
 }: TotalBalanceBoxProps) => {
-  const [bal, setBal] = useState(0)
+  const [userInvData, setUserInvData] = useState(null)
   const [paid, setPaid] = useState(false)
   const [due, setDue] = useState(false)
+  const [invAmount, setInvAmount] = useState(0)
+  const [invTotal, setInvTotal] = useState(0)
+  const [userId, setUserId] = useState('')
+  const [invCategory, setInvCategory] = useState('')
   const router = useRouter()
 
-  let myBal: number
+  const invest0 = async (type: any) => {
+    const loggedIn = await getLoggedInUser()
 
-  const invest1 = () => {
-    if (!paid) {
-      router.push('/paymentDetails')
-    }
+    setUserId(loggedIn.$id)
+    setDue(false)
+    setPaid(false)
+    setInvCategory('Starter')
+    setInvAmount(5000)
+    setInvTotal(6500)
 
-    if (paid) {
-      setBal(5000 + 5000 * 0.3)
-    }
-  }
+    try {
+      const userData = {
+        // $id,
+        userId: loggedIn.$id,
+        due,
+        paid,
+        invCategory: 'Starter',
+        invAmount: 5000,
+        invTotal: 6500,
+      }
 
-  const invest2 = () => {
-    if (!paid) {
-      router.push('/paymentDetails')
-    }
+      const invData = await createPortfolio(userData)
+      setUserInvData(invData)
 
-    if (paid) {
-      setBal(10000 + 10000 * 0.3)
-    }
-  }
+      if (!paid) {
+        setInvAmount(5000)
+        router.push('/paymentDetails')
+      }
 
-  const invest3 = () => {
-    if (!paid) {
-      router.push('/paymentDetails')
-    }
-
-    if (paid) {
-      setBal(20000 + 20000 * 0.3)
-    }
-  }
-
-  const invest4 = () => {
-    if (!paid) {
-      router.push('/paymentDetails')
-    }
-
-    if (paid) {
-      setBal(50000 + 50000 * 0.3)
+      if (paid) {
+        setInvTotal(6500)
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      // setIsLoading(false)
     }
   }
 
-  const invest5 = () => {
-    if (!paid) {
-      router.push('/paymentDetails')
-    }
+  // const invest1 = () => {
+  //   setInvAmount(5000)
+  //   if (!paid) {
+  //     router.push('/paymentDetails')
+  //   }
 
-    if (paid) {
-      setBal(100000 + 100000 * 0.3)
-    }
-  }
+  //   if (paid) {
+  //     setBal(5000 + 5000 * 0.3)
+  //   }
+  // }
 
-  const invest6 = () => {
-    if (!paid) {
-      router.push('/paymentDetails')
-    }
+  // const invest2 = () => {
+  //   if (!paid) {
+  //     router.push('/paymentDetails')
+  //   }
 
-    if (paid) {
-      setBal(500000 + 500000 * 0.3)
-    }
-  }
+  //   if (paid) {
+  //     setBal(10000 + 10000 * 0.3)
+  //   }
+  // }
+
+  // const invest3 = () => {
+  //   if (!paid) {
+  //     router.push('/paymentDetails')
+  //   }
+
+  //   if (paid) {
+  //     setBal(20000 + 20000 * 0.3)
+  //   }
+  // }
+
+  // const invest4 = () => {
+  //   if (!paid) {
+  //     router.push('/paymentDetails')
+  //   }
+
+  //   if (paid) {
+  //     setBal(50000 + 50000 * 0.3)
+  //   }
+  // }
+
+  // const invest5 = () => {
+  //   if (!paid) {
+  //     router.push('/paymentDetails')
+  //   }
+
+  //   if (paid) {
+  //     setBal(100000 + 100000 * 0.3)
+  //   }
+  // }
+
+  // const invest6 = () => {
+  //   if (!paid) {
+  //     router.push('/paymentDetails')
+  //   }
+
+  //   if (paid) {
+  //     setBal(500000 + 500000 * 0.3)
+  //   }
+  // }
 
   return (
     <>
@@ -93,7 +137,13 @@ const TotalBalanceBox = ({
             <p className='total-balance-label'>Total Current Balance</p>
 
             <div className='total-balance-amount flex-center gap-2'>
-              <AnimatedCounter amount={bal} />
+              {/* <AnimatedCounter amount={parseInt(userInvData?.invTotal)} /> */}
+
+              {!paid ? (
+                <AnimatedCounter amount={invAmount} />
+              ) : (
+                <AnimatedCounter amount={invTotal} />
+              )}
             </div>
           </div>
         </div>
@@ -103,7 +153,7 @@ const TotalBalanceBox = ({
       </section>
 
       <section className='flex flex-col justify-items-center mx-auto gap-2 mt-4 flex-wrap basis-1/2 md:flex-row'>
-        <div className='flex flex-col my-2 mx-auto' onClick={invest1}>
+        <div className='flex flex-col my-2 mx-auto' onClick={invest0}>
           <Link href='/' className='bank-card'>
             <div className='bank-card_content bg-gray-700 bg-bank-gradient'>
               <div>
@@ -153,7 +203,7 @@ const TotalBalanceBox = ({
           </Link>
         </div>
 
-        <div className='flex flex-col my-2 mx-auto' onClick={invest2}>
+        <div className='flex flex-col my-2 mx-auto'>
           <Link href='/' className='bank-card'>
             <div className='bank-card_content bg-gray-700'>
               <div>
@@ -203,7 +253,7 @@ const TotalBalanceBox = ({
           </Link>
         </div>
 
-        <div className='flex flex-col my-2 mx-auto' onClick={invest3}>
+        <div className='flex flex-col my-2 mx-auto'>
           <Link href='/' className='bank-card'>
             <div className='bank-card_content bg-yellow-700'>
               <div>
@@ -253,7 +303,7 @@ const TotalBalanceBox = ({
           </Link>
         </div>
 
-        <div className='flex flex-col my-2 mx-auto' onClick={invest4}>
+        <div className='flex flex-col my-2 mx-auto'>
           <Link href='/' className='bank-card'>
             <div className='bank-card_content bg-purple-700'>
               <div>
@@ -303,7 +353,7 @@ const TotalBalanceBox = ({
           </Link>
         </div>
 
-        <div className='flex flex-col my-2 mx-auto' onClick={invest5}>
+        <div className='flex flex-col my-2 mx-auto'>
           <Link href='/' className='bank-card'>
             <div className='bank-card_content bg-green-700'>
               <div>
@@ -353,7 +403,7 @@ const TotalBalanceBox = ({
           </Link>
         </div>
 
-        <div className='flex flex-col my-2 mx-auto' onClick={invest6}>
+        <div className='flex flex-col my-2 mx-auto'>
           <Link href='/' className='bank-card'>
             <div className='bank-card_content bg-fuchsia-700'>
               <div>

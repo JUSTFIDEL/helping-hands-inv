@@ -83,8 +83,6 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
       {
         ...userData,
         userId: newUserAccount.$id,
-        // dwollaCustomerId,
-        // dwollaCustomerUrl,
       }
     )
 
@@ -135,6 +133,72 @@ export const logoutAccount = async () => {
     await account.deleteSession('current')
   } catch (error) {
     return null
+  }
+}
+
+export const createPortfolio = async ({
+  $id,
+  userId,
+  due,
+  paid,
+  invCategory,
+  invAmount,
+  invTotal,
+}: createPortfolioProps) => {
+  try {
+    const { database } = await createAdminClient()
+
+    const invData = await database.createDocument(
+      DATABASE_ID!,
+      BANK_COLLECTION_ID!,
+      ID.unique(),
+      {
+        // $id,
+        userId,
+        due,
+        paid,
+        invCategory,
+        invAmount,
+        invTotal,
+      }
+    )
+
+    // return invData
+    return parseStringify(invData)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const getPortfolios = async ({ userId }: getPortfoliosProps) => {
+  try {
+    const { database } = await createAdminClient()
+
+    const portfolios = await database.listDocuments(
+      DATABASE_ID!,
+      BANK_COLLECTION_ID!,
+      [Query.equal('userId', [userId])]
+    )
+
+    return parseStringify(portfolios.documents)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const getPortfolio = async ({ documentId }: getPortfolioProps) => {
+  try {
+    const { database } = await createAdminClient()
+
+    const portfolio = await database.listDocuments(
+      DATABASE_ID!,
+      BANK_COLLECTION_ID!,
+      [Query.equal('$id', [documentId])]
+    )
+
+    return parseStringify(portfolio.documents[0])
+  } catch (error) {
+    console.log(error)
   }
 }
 

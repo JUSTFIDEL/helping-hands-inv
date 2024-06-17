@@ -23,6 +23,61 @@ declare type SignUpParams = {
   accountNumber: string
 }
 
+declare type InvestParams = {
+  due: boolean
+  paid: boolean
+  invAmount: number
+}
+
+declare interface createPortfolioProps {
+  $id?: string
+  userId: string
+  due: boolean
+  paid: boolean
+  invCategory: string
+  invAmount: number
+  invTotal: number
+}
+
+declare type Portfolio = {
+  $id: string
+  userId: string
+  due: boolean
+  paid: boolean
+  invCategory: string
+  invAmount: number
+  invTotal: number
+}
+
+declare interface getPortfoliosProps {
+  userId: string
+}
+
+declare interface getPortfolioProps {
+  documentId: string
+}
+
+declare interface getInvestmentsProps {
+  userId: string
+}
+
+declare interface getInvestmentProps {
+  appwriteItemId: string
+}
+
+declare type Investment = {
+  id: string
+  appwriteItemId: string
+  due: boolean
+  paid: boolean
+  invCategory: string
+  invAmount: number
+  invTotal: number
+  // name: string
+  // availableBalance: number
+  // type: string
+}
+
 declare type LoginUser = {
   email: string
   password: string
@@ -92,7 +147,7 @@ declare type Transaction = {
 }
 
 declare type Bank = {
-  $id: string
+  // $id?: string
   accountId: string
   bankId: string
   accessToken: string
