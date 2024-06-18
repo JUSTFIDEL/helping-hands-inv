@@ -21,6 +21,12 @@ declare type SignUpParams = {
   username: string
   bankName: string
   accountNumber: string
+
+  // due: boolean
+  // paid: boolean
+  // invCategory: string
+  // invAmount: number
+  // invTotal: number
 }
 
 declare type InvestParams = {
@@ -66,7 +72,7 @@ declare interface getInvestmentProps {
 }
 
 declare type Investment = {
-  id: string
+  $id: string
   appwriteItemId: string
   due: boolean
   paid: boolean

@@ -3,17 +3,21 @@ import RightSIdebar from '@/components/RightSIdebar'
 import TotalBalanceBox from '@/components/TotalBalanceBox'
 import { getInvestment, getInvestments } from '@/lib/actions/bank.actions'
 import { getLoggedInUser } from '@/lib/actions/user.actions'
+import { redirect } from 'next/navigation'
 import React from 'react'
 // import MyInvestment from '@/components/MyInvestment'
 // import Portfolio from '@/components/Portfolio'
 
 const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   const loggedIn = await getLoggedInUser()
+  if (!loggedIn) redirect('/sign-in')
+
   const investments = await getInvestments({ userId: loggedIn.$id })
 
   // if(!investments) return;
 
-  const appwriteItemId = (id as string) || investments?.data[0]?.appwriteItemId
+  const appwriteItemId = (id as string) || investments?.appwriteItemId
+  // const appwriteItemId = (id as string) || investments?.data[0]?.appwriteItemId
 
   const investment = await getInvestment({ appwriteItemId })
 

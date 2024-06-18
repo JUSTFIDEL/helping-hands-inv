@@ -105,17 +105,17 @@ export const getInvestment = async ({ appwriteItemId }: getInvestmentProps) => {
 
     const { database } = await createAdminClient()
 
-    const accountResponse = await database.listDocuments(
+    const investmentResponse = await database.listDocuments(
       DATABASE_ID!,
-      BANK_COLLECTION_ID!
-      // [Query.equal('$id', [documentId])]
+      BANK_COLLECTION_ID!,
+      [Query.equal('$id', [appwriteItemId])]
     )
 
-    const accountData = accountResponse
+    const investmentData = investmentResponse
 
-    return parseStringify(accountData.documents[0])
+    return parseStringify(investmentData.documents[0])
 
-    const account = {
+    const investment = {
       id: portfolio.$id,
       appwriteItemId: portfolio.$id,
       due: portfolio.due,
@@ -125,9 +125,7 @@ export const getInvestment = async ({ appwriteItemId }: getInvestmentProps) => {
       invTotal: portfolio.invTotal,
     }
 
-    return parseStringify({
-      data: account,
-    })
+    return parseStringify(investment)
 
     // // get account info from plaid
     // const accountsResponse = await plaidClient.accountsGet({

@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { Button } from './ui/button'
 import { useRouter } from 'next/navigation'
 import { getLoggedInUser, createPortfolio } from '@/lib/actions/user.actions'
+import { getInvestment } from '@/lib/actions/bank.actions'
 // import { parseInt, parseStringify } from '@/lib/utils'
 
 const TotalBalanceBox = ({
@@ -15,7 +16,7 @@ const TotalBalanceBox = ({
   totalBanks,
   totalCurrentBalance,
 }: TotalBalanceBoxProps) => {
-  const [userInvData, setUserInvData] = useState(null)
+  const [userInvData, setUserInvData] = useState({})
   const [paid, setPaid] = useState(false)
   const [due, setDue] = useState(false)
   const [invAmount, setInvAmount] = useState(0)
@@ -27,7 +28,7 @@ const TotalBalanceBox = ({
   const invest0 = async (type: any) => {
     const loggedIn = await getLoggedInUser()
 
-    setUserId(loggedIn.$id)
+    setUserId(loggedIn?.$id)
     setDue(false)
     setPaid(false)
     setInvCategory('Starter')
@@ -47,6 +48,7 @@ const TotalBalanceBox = ({
 
       const invData = await createPortfolio(userData)
       setUserInvData(invData)
+      console.log(userInvData)
 
       if (!paid) {
         setInvAmount(5000)
@@ -137,8 +139,6 @@ const TotalBalanceBox = ({
             <p className='total-balance-label'>Total Current Balance</p>
 
             <div className='total-balance-amount flex-center gap-2'>
-              {/* <AnimatedCounter amount={parseInt(userInvData?.invTotal)} /> */}
-
               {!paid ? (
                 <AnimatedCounter amount={invAmount} />
               ) : (

@@ -23,11 +23,14 @@ import { authFormSchema } from '@/lib/utils'
 import { Loader2, Router } from 'lucide-react'
 import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions'
 import { useRouter } from 'next/navigation'
+import Confetti from 'react-confetti'
 
 const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter()
   const [user, setUser] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [showConfetti, setShowConfetti] = useState(false)
+  const [error, setError] = useState(false)
 
   const formSchema = authFormSchema(type)
 
@@ -60,6 +63,10 @@ const AuthForm = ({ type }: { type: string }) => {
 
         const newUser = await signUp(userData)
         setUser(newUser)
+
+        setTimeout(() => {
+          setShowConfetti(true)
+        }, 3000)
       }
 
       if (type === 'sign-in') {
@@ -74,11 +81,13 @@ const AuthForm = ({ type }: { type: string }) => {
       console.log(error)
     } finally {
       setIsLoading(false)
+      setError(true)
     }
   }
 
   return (
     <section className='auth-form'>
+      {showConfetti && <Confetti />}
       <header className='flex flex-col gap-5 md:gap-8'>
         <Link href='/' className='cursor-pointer flex items-center gap-1'>
           <Image src='/icons/logo.svg' width={34} height={34} alt='logo' />
@@ -194,11 +203,17 @@ const AuthForm = ({ type }: { type: string }) => {
                     'Save'
                   )}
                 </Button>
+                {error && (
+                  <p>Please, kindly confirm your email if it is correct.</p>
+                )}
               </div>
             </form>
           </Form>
 
           <footer className='flex justify-center gap-1'>
+            {/* {error && (
+              <p>Please, kindly confirm your email if it is correct.</p>
+            )} */}
             <p className='text-14 font-normal text-gray-600'>
               {type === 'sign-in'
                 ? "Don't have an account?"

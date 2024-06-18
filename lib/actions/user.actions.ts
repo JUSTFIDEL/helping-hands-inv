@@ -153,7 +153,7 @@ export const createPortfolio = async ({
       BANK_COLLECTION_ID!,
       ID.unique(),
       {
-        // $id,
+        $id,
         userId,
         due,
         paid,
