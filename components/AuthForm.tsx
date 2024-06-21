@@ -66,7 +66,7 @@ const AuthForm = ({ type }: { type: string }) => {
 
         setTimeout(() => {
           setShowConfetti(true)
-        }, 3000)
+        }, 1000)
       }
 
       if (type === 'sign-in') {
