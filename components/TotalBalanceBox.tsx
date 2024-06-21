@@ -9,14 +9,17 @@ import { Button } from './ui/button'
 import { useRouter } from 'next/navigation'
 import { getLoggedInUser, createPortfolio } from '@/lib/actions/user.actions'
 import { getInvestment } from '@/lib/actions/bank.actions'
+import { CountdownTimer } from './CountdownTimer'
 // import { parseInt, parseStringify } from '@/lib/utils'
+
+const countdownDate = new Date('2024-06-22T16:04:10')
 
 const TotalBalanceBox = ({
   accounts = [],
   totalBanks,
   totalCurrentBalance,
 }: TotalBalanceBoxProps) => {
-  const [userInvData, setUserInvData] = useState({})
+  const [userInvData, setUserInvData] = useState()
   const [paid, setPaid] = useState(false)
   const [due, setDue] = useState(false)
   const [invAmount, setInvAmount] = useState(0)
@@ -48,20 +51,20 @@ const TotalBalanceBox = ({
 
       const invData = await createPortfolio(userData)
       setUserInvData(invData)
-      console.log(userInvData)
-
+      // console.log(userInvData)
       if (!paid) {
         setInvAmount(5000)
-        router.push('/paymentDetails')
-      }
 
-      if (paid) {
+        router.push('/paymentDetails')
+      } else {
         setInvTotal(6500)
       }
     } catch (error) {
       console.log(error)
     } finally {
       // setIsLoading(false)
+      console.log(userInvData)
+      console.log(setUserInvData)
     }
   }
 
@@ -136,23 +139,41 @@ const TotalBalanceBox = ({
         <div className='flex flex-col gap-6'>
           {/* <h2 className='header-2'>Investment(s): {totalBanks}</h2> */}
           <div className='flex flex-col gap-2'>
-            <p className='total-balance-label'>Total Current Balance</p>
+            <p className='total-balance-label'>Balance</p>
 
             <div className='total-balance-amount flex-center gap-2'>
               {!paid ? (
                 <AnimatedCounter amount={invAmount} />
               ) : (
-                <AnimatedCounter amount={invTotal} />
+                <AnimatedCounter amount={6500} />
               )}
             </div>
           </div>
         </div>
-        <Button className='form-btn absolute right-4 bottom-4' disabled={!due}>
+        <Button
+          className='form-btn absolute right-4 top-4 md:bottom-4'
+          disabled={!due}
+        >
           Withdraw
         </Button>
       </section>
+      <CountdownTimer deadline={countdownDate} title={'Investment due in'} />
 
-      <section className='flex flex-col justify-items-center mx-auto gap-2 mt-4 flex-wrap basis-1/2 md:flex-row'>
+      <div className=' flex justify-center items-center gap-4 mt-0 mx-auto'>
+        <div className='m-0'>
+          <Image
+            alt='investment-logo'
+            src='/icons/investment5r.jpg'
+            width={50}
+            height={50}
+          />
+        </div>
+        <p className='text-[20px] font-semibold text-red-700 m-0 p-0 text-center'>
+          Choose an Investment Portfolio below.
+        </p>
+      </div>
+
+      <section className='flex flex-col justify-items-center mx-auto gap-2 mt-2 flex-wrap basis-1/2 md:flex-row'>
         <div className='flex flex-col my-2 mx-auto' onClick={invest0}>
           <Link href='/' className='bank-card'>
             <div className='bank-card_content bg-gray-700 bg-bank-gradient'>

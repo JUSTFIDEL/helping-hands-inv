@@ -16,8 +16,8 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
 
   // if(!investments) return;
 
+  // const appwriteItemId = (id as string) || investments?.appwriteItemId
   const appwriteItemId = (id as string) || investments?.appwriteItemId
-  // const appwriteItemId = (id as string) || investments?.data[0]?.appwriteItemId
 
   const investment = await getInvestment({ appwriteItemId })
 
@@ -41,7 +41,7 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
           <TotalBalanceBox
             accounts={[]}
             totalBanks={0}
-            totalCurrentBalance={investments?.invAmount}
+            totalCurrentBalance={investment?.invAmount}
           />
         </header>
 

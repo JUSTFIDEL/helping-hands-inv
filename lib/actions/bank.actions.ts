@@ -23,24 +23,25 @@ export const getInvestments = async ({ userId }: getInvestmentsProps) => {
       portfolios?.map(async (portfolio: Portfolio) => {
         const { database } = await createAdminClient()
 
-        const accountsResponse = await database.listDocuments(
+        const investmentsResponse = await database.listDocuments(
           DATABASE_ID!,
           BANK_COLLECTION_ID!,
           [Query.equal('userId', [userId])]
         )
 
-        const accountData = accountsResponse
+        const investmentData = investmentsResponse.documents[0]
+        // const investmentData = investmentsResponse.investments[0]
 
-        return parseStringify(accountData.documents[0])
+        return parseStringify(investmentData)
 
         const investment = {
-          id: portfolios.$id,
-          appwriteItemId: portfolios.$id,
-          due: portfolios.due,
-          paid: portfolios.paid,
-          invCategory: portfolios.invCategory,
-          invAmount: portfolios.invAmount,
-          invTotal: portfolios.invTotal,
+          id: portfolio.$id,
+          appwriteItemId: portfolio.$id,
+          due: portfolio.due,
+          paid: portfolio.paid,
+          invCategory: portfolio.invCategory,
+          invAmount: portfolio.invAmount,
+          invTotal: portfolio.invTotal,
 
           // id: accountData.account_id,
           // availableBalance: accountData.balances.available!,
