@@ -10,17 +10,23 @@ declare type SearchParamProps = {
 declare type SignUpParams = {
   firstName: string
   lastName: string
+  email: string
+  password: string
+  username: string
+  bankName: string
+  accountNumber: string
+  due?: string
+  paid?: string
+  invAmount: string
+  invCategory?: string
+  // invTotal?: string
+
   // address1: string
   // city: string
   // state: string
   // postalCode: string
   // dateOfBirth: string
   // ssn: string
-  email: string
-  password: string
-  username: string
-  bankName: string
-  accountNumber: string
 
   // due: boolean
   // paid: boolean
@@ -30,29 +36,29 @@ declare type SignUpParams = {
 }
 
 declare type InvestParams = {
-  due: boolean
-  paid: boolean
-  invAmount: number
+  due: string
+  paid: string
+  invAmount: string
 }
 
 declare interface createPortfolioProps {
   $id?: string
   userId: string
-  due: boolean
-  paid: boolean
+  due: string
+  paid: string
+  invAmount: string
+  invTotal: string
   invCategory: string
-  invAmount: number
-  invTotal: number
 }
 
 declare type Portfolio = {
   $id: string
   userId: string
-  due: boolean
-  paid: boolean
+  due: string
+  paid: string
   invCategory: string
-  invAmount: number
-  invTotal: number
+  invAmount: string
+  invTotal: string
 }
 
 declare interface getPortfoliosProps {
@@ -99,6 +105,9 @@ declare type User = {
   lastName: string
   bankName: string
   accountNumber: string
+  due?: string
+  paid?: string
+  invAmount: string
   // dwollaCustomerUrl: string
   // dwollaCustomerId: string
   // address1: string
@@ -117,6 +126,9 @@ declare type NewUserParams = {
   username: string
   bankName: string
   accountNumber: string
+  due?: string
+  paid?: string
+  invAmount: string
 }
 
 declare type Account = {
@@ -285,6 +297,7 @@ declare interface TotalBalanceBoxProps {
   accounts: Account[]
   totalBanks: number
   totalCurrentBalance?: number
+  user?: User
 }
 
 declare interface FooterProps {

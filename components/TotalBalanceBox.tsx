@@ -8,22 +8,24 @@ import { useState } from 'react'
 import { Button } from './ui/button'
 import { useRouter } from 'next/navigation'
 import { getLoggedInUser, createPortfolio } from '@/lib/actions/user.actions'
-import { getInvestment } from '@/lib/actions/bank.actions'
-import { CountdownTimer } from './CountdownTimer'
+// import { getInvestment } from '@/lib/actions/bank.actions'
+// import { CountdownTimer } from './CountdownTimer'
 // import { parseInt, parseStringify } from '@/lib/utils'
 
-const countdownDate = new Date('2024-06-22T16:04:10')
+// const countdownDate = new Date('2024-06-22T16:04:10')
 
 const TotalBalanceBox = ({
   accounts = [],
   totalBanks,
   totalCurrentBalance,
+  user,
 }: TotalBalanceBoxProps) => {
   const [userInvData, setUserInvData] = useState()
-  const [paid, setPaid] = useState(false)
-  const [due, setDue] = useState(false)
-  const [invAmount, setInvAmount] = useState(0)
-  const [invTotal, setInvTotal] = useState(0)
+  const [bal, setBal] = useState(0)
+  const [paid, setPaid] = useState('false')
+  const [due, setDue] = useState('false')
+  const [invAmount, setInvAmount] = useState('')
+  const [invTotal, setInvTotal] = useState('')
   const [userId, setUserId] = useState('')
   const [invCategory, setInvCategory] = useState('')
   const router = useRouter()
@@ -32,33 +34,38 @@ const TotalBalanceBox = ({
     const loggedIn = await getLoggedInUser()
 
     setUserId(loggedIn?.$id)
-    setDue(false)
-    setPaid(false)
-    setInvCategory('Starter')
-    setInvAmount(5000)
-    setInvTotal(6500)
+    setDue('false')
+    setPaid('false')
+    // setInvCategory('Starter')
+    setInvAmount('5000')
+    setInvTotal('6500')
 
     try {
       const userData = {
-        // $id,
         userId: loggedIn.$id,
         due,
         paid,
+        invAmount: '5000',
+        invTotal: '6500',
         invCategory: 'Starter',
-        invAmount: 5000,
-        invTotal: 6500,
+        // $id,
       }
 
       const invData = await createPortfolio(userData)
       setUserInvData(invData)
       // console.log(userInvData)
-      if (!paid) {
-        setInvAmount(5000)
-
-        router.push('/paymentDetails')
-      } else {
-        setInvTotal(6500)
+      {
+        paid === 'true'
+          ? setBal(loggedIn?.data.invTotal)
+          : setBal(loggedIn?.data.invAmount)
       }
+
+      // if (!paid) {
+      //   setInvAmount('5000')
+      //   router.push('/paymentDetails')
+      // } else {
+      //   setInvTotal('6500')
+      // }
     } catch (error) {
       console.log(error)
     } finally {
@@ -139,14 +146,16 @@ const TotalBalanceBox = ({
         <div className='flex flex-col gap-6'>
           {/* <h2 className='header-2'>Investment(s): {totalBanks}</h2> */}
           <div className='flex flex-col gap-2'>
-            <p className='total-balance-label'>Balance</p>
+            <p className='total-balance-label'>Investment&#40;s&#41; Total</p>
 
             <div className='total-balance-amount flex-center gap-2'>
-              {!paid ? (
-                <AnimatedCounter amount={invAmount} />
+              {/* {paid === 'false' ? (
+                <AnimatedCounter amount={Number(invAmount)} />
               ) : (
-                <AnimatedCounter amount={6500} />
-              )}
+                // {user?.invAmount}
+                <AnimatedCounter amount={Number(invTotal)} />
+              )} */}
+              <AnimatedCounter amount={bal} />
             </div>
           </div>
         </div>
@@ -157,7 +166,9 @@ const TotalBalanceBox = ({
           Withdraw
         </Button>
       </section>
-      <CountdownTimer deadline={countdownDate} title={'Investment due in'} />
+
+      {/* Countdown timer */}
+      {/* <CountdownTimer deadline={countdownDate} title={'Investment due in'} /> */}
 
       <div className=' flex justify-center items-center gap-4 mt-0 mx-auto'>
         <div className='m-0'>
@@ -169,11 +180,12 @@ const TotalBalanceBox = ({
           />
         </div>
         <p className='text-[20px] font-semibold text-red-700 m-0 p-0 text-center'>
-          Choose an Investment Portfolio below.
+          Choose an Investment Portfolio below. {user?.invAmount}
         </p>
       </div>
 
       <section className='flex flex-col justify-items-center mx-auto gap-2 mt-2 flex-wrap basis-1/2 md:flex-row'>
+        {/* <div className='flex flex-col my-2 mx-auto'> */}
         <div className='flex flex-col my-2 mx-auto' onClick={invest0}>
           <Link href='/' className='bank-card'>
             <div className='bank-card_content bg-gray-700 bg-bank-gradient'>

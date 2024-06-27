@@ -3,7 +3,8 @@
 import { ID, Query } from 'node-appwrite'
 import { createAdminClient, createSessionClient } from '../appwrite'
 import { cookies } from 'next/headers'
-import { encryptId, extractCustomerIdFromUrl, parseStringify } from '../utils'
+import { parseStringify } from '../utils'
+// import { encryptId, extractCustomerIdFromUrl, parseStringify } from '../utils'
 // import {
 //   CountryCode,
 //   ProcessorTokenCreateRequest,
@@ -58,8 +59,18 @@ export const signIn = async ({ email, password }: signInProps) => {
 }
 
 export const signUp = async ({ password, ...userData }: SignUpParams) => {
-  const { email, firstName, lastName, username, bankName, accountNumber } =
-    userData
+  const {
+    email,
+    firstName,
+    lastName,
+    username,
+    bankName,
+    accountNumber,
+    invAmount,
+    // due,
+    // paid,
+    // invTotal,
+  } = userData
 
   let newUserAccount
 
@@ -71,7 +82,7 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
       ID.unique(),
       email,
       password,
-      `${firstName} ${lastName}`
+      `${firstName} ${lastName} ${username} ${bankName} ${accountNumber} ${invAmount}`
     )
 
     if (!newUserAccount) throw new Error('Error creating user')
@@ -141,10 +152,10 @@ export const createPortfolio = async ({
   userId,
   due,
   paid,
-  invCategory,
   invAmount,
   invTotal,
-}: createPortfolioProps) => {
+}: // invCategory,
+createPortfolioProps) => {
   try {
     const { database } = await createAdminClient()
 
@@ -157,9 +168,9 @@ export const createPortfolio = async ({
         userId,
         due,
         paid,
-        invCategory,
         invAmount,
         invTotal,
+        // invCategory,
       }
     )
 

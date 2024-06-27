@@ -12,20 +12,14 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   const loggedIn = await getLoggedInUser()
   if (!loggedIn) redirect('/sign-in')
 
-  const investments = await getInvestments({ userId: loggedIn.$id })
+  // const investments = await getInvestments({ userId: loggedIn.$id })
 
   // if(!investments) return;
 
   // const appwriteItemId = (id as string) || investments?.appwriteItemId
-  const appwriteItemId = (id as string) || investments?.appwriteItemId
+  // const appwriteItemId = (id as string) || investments?.appwriteItemId
 
-  const investment = await getInvestment({ appwriteItemId })
-
-  console.log({
-    // investments?.data,
-    appwriteItemId,
-    investment,
-  })
+  // const investment = await getInvestment({ appwriteItemId })
 
   return (
     <section className='home'>
@@ -41,7 +35,7 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
           <TotalBalanceBox
             accounts={[]}
             totalBanks={0}
-            totalCurrentBalance={investment?.invAmount}
+            totalCurrentBalance={loggedIn?.invAmount}
           />
         </header>
 

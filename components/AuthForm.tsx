@@ -17,13 +17,25 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
+// import {
+//   Select,
+//   SelectContent,
+//   SelectGroup,
+//   SelectItem,
+//   SelectLabel,
+//   SelectTrigger,
+//   SelectValue,
+// } from "@/components/ui/select"
 import { Input } from '@/components/ui/input'
-import CustomInput from './CustomInput'
+// import CustomSelect from './CustomSelect'
 import { authFormSchema } from '@/lib/utils'
 import { Loader2, Router } from 'lucide-react'
 import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions'
 import { useRouter } from 'next/navigation'
 import Confetti from 'react-confetti'
+import CustomInput from './CustomInput'
+import CustomSelect from './CustomSelect'
+import { useToast } from '@/components/ui/use-toast'
 
 const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter()
@@ -31,6 +43,7 @@ const AuthForm = ({ type }: { type: string }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [showConfetti, setShowConfetti] = useState(false)
   const [error, setError] = useState(false)
+  const { toast } = useToast()
 
   const formSchema = authFormSchema(type)
 
@@ -59,14 +72,19 @@ const AuthForm = ({ type }: { type: string }) => {
           password: data.password,
           bankName: data.bankName!,
           accountNumber: data.accountNumber!,
+          invAmount: data.invAmount!,
         }
 
         const newUser = await signUp(userData)
         setUser(newUser)
+        toast({
+          title: 'Creating Account ',
+          description: 'Your account is being created...please hold',
+        })
 
         setTimeout(() => {
           setShowConfetti(true)
-        }, 1000)
+        }, 500)
       }
 
       if (type === 'sign-in') {
@@ -170,6 +188,13 @@ const AuthForm = ({ type }: { type: string }) => {
                     name='accountNumber'
                     label='Account Number'
                     placeholder='Enter account number'
+                  />
+
+                  <CustomSelect
+                    control={form.control}
+                    name='invAmount'
+                    label='Investment Amount'
+                    placeholder='Choose Investment Amount'
                   />
                 </>
               )}

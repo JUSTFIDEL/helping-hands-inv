@@ -224,5 +224,11 @@ export const authFormSchema = (type: string) =>
     bankName: type === 'sign-in' ? z.string().optional() : z.string().min(3),
     accountNumber:
       type === 'sign-in' ? z.string().optional() : z.string().min(10).max(10),
+    // due: type === 'sign-in' ? z.string().optional() : z.string().min(3).max(5),
+    // paid: type === 'sign-in' ? z.string().optional() : z.string().min(3).max(5),
+    // invCategory: type === 'sign-in' ? z.string().optional() : z.string().min(4),
+    invAmount: type === 'sign-in' ? z.string().optional() : z.string().min(4),
+    // invAmount: z.string().optional(),
+    // invTotal: type === 'sign-in' ? z.string().optional() : z.string().min(4),
     // name: type === 'sign-in' ? z.string().optional() : z.string().min(3),
   })
